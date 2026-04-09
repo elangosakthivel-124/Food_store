@@ -1,12 +1,15 @@
 from pydantic import BaseModel
 
-class FoodCreate(BaseModel):
+class FoodBase(BaseModel):
     name: str
     category: str
     price: float
 
-class FoodResponse(FoodCreate):
+class FoodCreate(FoodBase):
+    pass
+
+class FoodResponse(FoodBase):
     id: int
 
     class Config:
-        from_attributes = True
+        from_attributes = True  # Pydantic v2 compatible
